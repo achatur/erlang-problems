@@ -22,3 +22,6 @@ One module mimics retrieving data from an external weather API. To avoid non-por
 data has been hardcoded into a separate module instead of using an HTTP client and a real API. The fake data module
 has a sleep built in to simulate the delay in talking to an API. The problem expressed by the test is to retrieve
 forecast data for several locations at the same time without incurring an excessive wait.
+
+
+[![Analytics](https://ga-beacon.appspot.com/UA-25165099-7/erlang-problems/README.md?flat)](https://github.com/leomperes/erlang-problems "My Erlang Problems")

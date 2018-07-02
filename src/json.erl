@@ -3,20 +3,20 @@
 
 %%render(_) -> ok.
 
-render({L}) when is_list(L) ->
-  "{" ++ erl_list_render(L) ++ "}";
-render({Key, JValue}) when is_atom(Key) ->
-  "\"" ++ atom_to_list(Key) ++ "\":" ++ render(JValue);
-render(JValue) when is_binary(JValue) ->
-  "\"" ++ binary_to_list(JValue) ++ "\"";
-render(JValue) when is_integer(JValue) ->
-  integer_to_list(JValue);
-render(L) when is_list(L) ->
-  "[" ++ erl_list_render(L) ++ "]".
+render({List}) when is_list(List) ->
+  "{" ++ erl_list_render(List) ++ "}";
+render({Key, JsonValue}) when is_atom(Key) ->
+  "\"" ++ atom_to_list(Key) ++ "\":" ++ render(JsonValue);
+render(JsonValue) when is_binary(JsonValue) ->
+  "\"" ++ binary_to_list(JsonValue) ++ "\"";
+render(JsonValue) when is_integer(JsonValue) ->
+  integer_to_list(JsonValue);
+render(List) when is_list(List) ->
+  "[" ++ erl_list_render(List) ++ "]".
 
 erl_list_render([]) ->
   "";
-erl_list_render([E]) ->
-  render(E);
-erl_list_render([E | R]) ->
-  render(E) ++ "," ++ erl_list_render(R).
+erl_list_render([Expected]) ->
+  render(Expected);
+erl_list_render([Expected | Rendered]) ->
+  render(Expected) ++ "," ++ erl_list_render(Rendered).

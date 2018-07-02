@@ -8,10 +8,10 @@ forecast(Cities) ->
   [spawn(fun() -> Self ! weather_api:get_weather(City) end) || City <- Cities],
   loop(length(Cities), []).
 
-loop(0, R) ->
-  lists:reverse(R);
-loop(N, R) ->
+loop(0, Rendered) ->
+  lists:reverse(Rendered);
+loop(N, Rendered) ->
   receive
     {weather, {current,  _, _}, {forecast,  _, Forecast}} ->
-      loop(N - 1, [Forecast | R])
+      loop(N - 1, [Forecast | Rendered])
   end.
